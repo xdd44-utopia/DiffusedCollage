@@ -9,6 +9,7 @@ public class ImageObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
 	public GameObject layerPrefab;
 	private Transform layerHolder;
+	private LayerMenuController layerMenu;
 	private GameObject layer;
 
 	private RectTransform rect;
@@ -32,11 +33,15 @@ public class ImageObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 		GetComponent<Image>().sprite = Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f));
 		if (layer == null) {
 			layerHolder = GameObject.Find("Items").transform;
+			layerMenu = GameObject.Find("LayerMenu").GetComponent<LayerMenuController>();
 			layer = Instantiate(layerPrefab, layerHolder);
 			layer.GetComponent<RectTransform>().anchoredPosition = new Vector3(12.5f, -108, 0);
+			layerMenu.addItem(layer.GetComponent<LayerItem>());
 		}
+		LayerItem.count++;
 		layer.transform.GetChild(0).GetComponent<Image>().sprite = Sprite.Create(tex, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f));
 		layer.transform.GetChild(1).GetComponent<TMP_Text>().text = prompt;
+		layer.GetComponent<LayerItem>().image = this.transform;
 	}
 	
 	public void OnBeginDrag(PointerEventData eventData) {
