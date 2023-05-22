@@ -9,6 +9,9 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+/API/diffusion_models/
+/API/dis_models/saved_models/
+/[Ee]xamples/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
