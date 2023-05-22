@@ -12,18 +12,22 @@ public class ImageObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 	private LayerMenuController layerMenu;
 	private GameObject layer;
 
-	private RectTransform rect;
+	protected RectTransform rect;
 	private static int size = 512;
 	
 	private Vector3 posDiff;
 
-	void Start() {
+	protected virtual void Start() {
 		rect = GetComponent<RectTransform>();
 		rect.sizeDelta = new Vector2(size, size);
 	}
 
 	void Update() {
 		
+	}
+
+	public void selected() {
+		Selector.current = rect;
 	}
 
 	public void updateImage(string name, string prompt) {
@@ -54,7 +58,7 @@ public class ImageObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 		}
 	}
 	
-	public void OnDrag(PointerEventData eventData) {
+	public virtual void OnDrag(PointerEventData eventData) {
 		if (eventData.pointerEnter != null && eventData.pointerEnter.transform as RectTransform != null) {
 			RectTransform draggingPlane = eventData.pointerEnter.transform as RectTransform;
 			Vector3 globalMousePos;
