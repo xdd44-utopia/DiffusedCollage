@@ -16,4 +16,8 @@ public class DummyImageObject : ImageObject {
 		return;
 	}
 
+	public override void destroyImage() {
+		return;
+	}
+
 }

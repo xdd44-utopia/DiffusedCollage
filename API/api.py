@@ -24,6 +24,7 @@ device = 'cuda'
 # Stable Diffusion
 
 pipe = StableDiffusionPipeline.from_pretrained("./diffusion_models/stable-diffusion-v1-4", torch_dtype=torch.float16, requires_safety_checker=False)
+pipe.safety_checker = lambda images, **kwargs: (images, [False] * len(images))
 pipe = pipe.to("cuda")
 
 # negative_prompt = ["partial, bad anatomy, bad proportions, blurry, cloned face, cropped, deformed, dehydrated, disfigured, duplicate, error, extra arms, extra fingers, extra legs, extra limbs, fused fingers, gross proportions, jpeg artifacts, long neck, low quality, lowres, malformed limbs, missing arms, missing legs, morbid, mutated hands, mutation, mutilated, out of frame, poorly drawn face, poorly drawn hands, signature, text, too many fingers, ugly, username, watermark, worst quality"]

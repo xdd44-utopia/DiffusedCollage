@@ -49,7 +49,7 @@ public class LayerItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 				rect.position = new Vector3(rect.position.x, posDiff + globalMousePos.y, rect.position.z);
 			}
 		}
-		if (rect.anchoredPosition.y - upper.anchoredPosition.y > -108) {
+		if (rect.anchoredPosition.y - upper.anchoredPosition.y > -108 && upper.GetComponent<LayerItem>() != null) {
 			RectTransform upperupper = upper.GetComponent<LayerItem>().upper;
 			if (upperupper.GetComponent<LayerItem>() != null) {
 				upperupper.GetComponent<LayerItem>().lower = rect;
@@ -109,6 +109,19 @@ public class LayerItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 		else {
 			return upper.GetComponent<LayerItem>().getOrder() + 1;
 		}
+	}
+
+	public void destroyItem() {
+		count--;
+		if (upper.GetComponent<LayerItem>() == null) {
+			LayerMenuController.first = lower;
+		} else {
+			upper.GetComponent<LayerItem>().lower = lower;
+		}
+		if (lower != null) {
+			lower.GetComponent<LayerItem>().upper = upper;
+		}
+		Destroy(this.gameObject);
 	}
 
 }

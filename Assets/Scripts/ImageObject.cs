@@ -72,4 +72,9 @@ public class ImageObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 		
 	}
 
+	public virtual void destroyImage() {
+		layer.GetComponent<LayerItem>().destroyItem();
+		Destroy(this.gameObject);
+	}
+
 }

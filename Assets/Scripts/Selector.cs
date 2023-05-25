@@ -19,6 +19,9 @@ public class Selector : MonoBehaviour {
 	}
 
 	void Update() {
+		if (current == null) {
+			GameObject.Find("DummyImageObject").GetComponent<RectTransform>();
+		}
 		if (ltc.isDragging || rbc.isDragging) {
 			current.anchoredPosition = (lt.anchoredPosition + rb.anchoredPosition) / 2;
 			current.localScale = new Vector3(
@@ -62,6 +65,11 @@ public class Selector : MonoBehaviour {
 				current.anchoredPosition.x + 256 * current.localScale.x,
 				current.anchoredPosition.y - 256 * current.localScale.y
 			);
+		}
+
+		if (Input.GetKeyDown(KeyCode.Delete)) {
+			current.GetComponent<ImageObject>().destroyImage();
+			current = GameObject.Find("DummyImageObject").GetComponent<RectTransform>();
 		}
 	}
 }

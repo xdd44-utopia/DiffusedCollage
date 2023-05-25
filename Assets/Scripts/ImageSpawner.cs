@@ -44,7 +44,7 @@ public class ImageSpawner : MonoBehaviour {
 	}
 
 	private IEnumerator Request(string prompt) {
-		string tunedPrompt = "An overall photography of " + prompt.ToLower();
+		string tunedPrompt = "A photography of " + prompt.ToLower();
 		RequestContent obj = new RequestContent(tunedPrompt);
 		string data = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
 		byte[] bodyRaw = Encoding.UTF8.GetBytes(data);
