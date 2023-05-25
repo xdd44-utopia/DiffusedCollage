@@ -22,3 +22,5 @@ python api.py //or python3
 4. Currently, Unity project is hardcoded to make request at http://127.0.0.1:5000. If Flask appears to run on different address, please modifiy either Flask's setting at *Line 167, api.py* or Unity's requesting address at *Line 52, Assets/Scripts/ImageSpawner.cs*.
 
 5. Run the Unity project and have fun!
+
+6. The generated images can be found in *Assets/Images*. If an image has no corresponding *nobackground* image, it indicates the IS-Net wiped out almost everything as background.
